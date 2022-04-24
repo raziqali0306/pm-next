@@ -5,7 +5,7 @@ function RegisterPage() {
     const Router = useRouter();
 
     return (
-        <div className="pt-10 px-12 select-none max-w-lg mx-auto"> 
+        <div className="py-10 px-12 select-none max-w-lg mx-auto"> 
             <div className="px-4">
                 <p className="text-4xl uppercase pb-4 font-bold tracking-widest text-primaryHeading">vault</p>
                 <p className="text-2xl pb-4 tracking-wider text-primaryParagraph">Create Account</p>
