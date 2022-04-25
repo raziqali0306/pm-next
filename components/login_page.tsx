@@ -19,7 +19,7 @@ function LoginPage() {
                     <label className='font-semibold tracking-wide mb-1' htmlFor="password">Password</label>
                     <input className="h-8 px-2 w-full rounded-md mb-2 border-2 border-secondary focus:outline-none focus:border-primary" type="password" name="password" id="password" />
                     <div className="flex items-center gap-1 mt-4 mb-2">
-                        <input className="border-primary" type="checkbox" value="" id="remail" checked />
+                        <input className="border-primary" type="checkbox" value="" id="remail" defaultChecked/>
                         <label htmlFor="remail" className="text-highlight">
                             Remember me
                         </label>

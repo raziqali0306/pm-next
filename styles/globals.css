@@ -14,3 +14,7 @@ body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+input[type=text], input[type=email], input[type=password]  {
+    @apply text-primary text-sm;
+}
