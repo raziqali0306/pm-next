@@ -50,18 +50,18 @@ function RegisterPage() {
             <div className="px-4 py-6 mb-20 rounded-sm bg-secondary text-primary text-left text-base">
                 <form onSubmit={(event) => {register(event)}}>
                     <label className='font-semibold tracking-wide mb-1' htmlFor="email">Email Address</label>
-                    <input className="h-8 px-2 w-full rounded-md mb-2 border-2 border-secondary focus:outline-none focus:border-primary" type="text" name="email" id="email" required/>
+                    <input className="h-8 px-2 w-full rounded-md mb-2 border-2 border-secondary focus:outline-none focus:border-primary" type="text" name="email" id="email" placeholder='Eg: JohnDoe@example.com' required/>
                     <label className='font-semibold tracking-wide mb-1' htmlFor="name">Your Name</label>
-                    <input className="h-8 px-2 w-full rounded-md mb-1 border-2 border-secondary focus:outline-none focus:border-primary" type="text" name="name" id="name" required/>
+                    <input className="h-8 px-2 w-full rounded-md mb-1 border-2 border-secondary focus:outline-none focus:border-primary" type="text" name="name" id="name" placeholder='Eg: John Doe' required/>
                     <p className='text-xs opacity-80 mb-2'>What should we call you?</p>
                     <label className='font-semibold tracking-wide mb-1' htmlFor="username">Username</label>
-                    <input className="h-8 px-2 w-full rounded-md mb-1 border-2 border-secondary focus:outline-none focus:border-primary" type="text" name="username" id="username" required/>
+                    <input className="h-8 px-2 w-full rounded-md mb-1 border-2 border-secondary focus:outline-none focus:border-primary" type="text" name="username" id="username" placeholder='Eg: Username' required/>
                     <p className='text-xs opacity-80 mb-2'>You will use username to login.</p>
                     <label className='font-semibold tracking-wide mb-1' htmlFor="password1">Master Password</label>
-                    <input className="h-8 px-2 w-full rounded-md mb-1 border-2 border-secondary focus:outline-none focus:border-primary" type="password" name="password1" id="password1" required/>
+                    <input className="h-8 px-2 w-full rounded-md mb-1 border-2 border-secondary focus:outline-none focus:border-primary" type="password" name="password1" id="password1" placeholder='Enter password' required/>
                     <p className='text-xs opacity-80 mb-2'>Master password is used to Log In and keep it strong. Do not share your Master password and forget since, there is no way to recover it.</p>
                     <label className='font-semibold tracking-wide mb-1' htmlFor="password2">Re-enter Master Password</label>
-                    <input className="h-8 px-2 w-full rounded-md mb-2 border-2 border-secondary focus:outline-none focus:border-primary" type="password" name="password2" id="password2" required/>
+                    <input className="h-8 px-2 w-full rounded-md mb-2 border-2 border-secondary focus:outline-none focus:border-primary" type="password" name="password2" id="password2" placeholder='Enter password again' required/>
                     <p className='text-xs opacity-80 mb-2'>Re-enter your master password here.</p>
                     <div className="flex items-center gap-1 mt-4 mb-2">
                         <input className="border-primary" type="checkbox" name='check' id="check" checked />
