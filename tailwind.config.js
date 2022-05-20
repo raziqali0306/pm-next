@@ -4,7 +4,21 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+<<<<<<< Updated upstream
     extend: {},
+=======
+    extend: {
+      colors: {
+        primary: '#55423d',
+        secondary: '#ffc0ad',
+        primaryHeading: '#fffffe',
+        secondaryHeading: '#271c19',
+        primaryParagraph: '#fff3ec',
+        secondaryParagraph: '#271c19',
+        highlight: '#9656a1',
+      },
+    },
+>>>>>>> Stashed changes
   },
   plugins: [],
 };
