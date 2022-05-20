@@ -89,8 +89,8 @@ function LoginPage() {
                     </div>
                     <div className="inline-flex items-center gap-2 w-full justify-around font-semibold">
                         <div className="cursor-pointer w-full inline-flex gap-1 items-center justify-center text-secondaryParagraph text-center py-1 rounded-md bg-primary border-2 border-primary">
-                            <ImEnter />
-                            <input type="submit" value="Log in" className='cursor-pointer'/>
+                            <ImEnter color="white" />
+                            <input type="submit" value="Log in" className='cursor-pointer text-primaryParagraph'/>
                         </div>
                         <Link href='/register' passHref>
                             <div className="cursor-pointer w-full inline-flex gap-1 items-center justify-center text-center py-1 rounded-md border-primary border-2">

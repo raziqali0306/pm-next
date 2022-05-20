@@ -71,7 +71,7 @@ function RegisterPage() {
                     </div>
                     <div className="inline-flex items-center gap-2 w-full justify-around font-semibold">
                         <div className="w-full text-secondaryParagraph text-center py-1 rounded-md bg-primary border-2 border-primary cursor-pointer">
-                            <input type="submit" value="Submit" className='font-semibold cursor-pointer focus:opacity-50 w-full'/>
+                            <input type="submit" value="Submit" className='text-primaryParagraph font-semibold cursor-pointer focus:opacity-50 w-full'/>
                         </div>
                         <div className="cursor-pointer w-full text-center py-1 rounded-md border-primary border-2" onClick={() => Router.back()}>
                             Cancel
