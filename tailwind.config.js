@@ -4,9 +4,6 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-<<<<<<< Updated upstream
-    extend: {},
-=======
     extend: {
       colors: {
         primary: '#55423d',
@@ -18,7 +15,6 @@ module.exports = {
         highlight: '#9656a1',
       },
     },
->>>>>>> Stashed changes
   },
   plugins: [],
 };
