@@ -30,11 +30,9 @@ function LoginPage() {
         .then((res) => {
             if(res.status === 200) {
                 if(target.remail.value === "on") {
-                    localStorage.setItem('pm', JSON.stringify({
-                        username: res.data.username,
-                        accesstoken: res.data.accesstoken,
-                    }));
+                    localStorage.setItem('vault', res.data.username);
                 }
+                sessionStorage.setItem("token_details", res.data.accesstoken);
                 Router.replace('/app');
             }
             else {
@@ -48,9 +46,9 @@ function LoginPage() {
     }
 
     useEffect(() => {
-        if(localStorage.getItem('pm') !== null) {
-            const pm = JSON.parse(localStorage.getItem('pm') || "");
-            setUsername(pm.username);
+        if(localStorage.getItem('vault') !== null) {
+            const username:string | null = localStorage.getItem('vault');
+            setUsername(username);
         }
     }, [])
 
@@ -66,8 +64,9 @@ function LoginPage() {
                     {username !== null && username !== ''? 
                     <div className='text-center my-4 text-base'>
                         <input className="hidden" value={username || ""} type="text" name='username' onChange={() => {null}} required/>
-                        <p>Hey <span className='font-bold text-xl'>{username}</span>! <br/> (Enter your password to access vault.)</p>
-                        <div className='cursor-pointer'>Login to another account? <span className='font-semibold text-lg' onClick={() => {
+                        <p>Hey <span className='font-bold text-xl'>{username}</span>! </p>
+                        <p className='text-xs'>(Enter your password to access vault.)</p>
+                        <div className='cursor-pointer text-xs'>Login to another account? <span className='font-semibold text-sm' onClick={() => {
                             setUsername(null);
                         }}>Click here.!</span></div>
                     </div>

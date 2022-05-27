@@ -27,7 +27,7 @@ function RegisterPage() {
             await axios.post('http://localhost:3000/auth/register', user)
             .then((res) => {
                 if(res.status === 200) {
-                    localStorage.setItem('pm-username', user.username);
+                    localStorage.setItem('vault', user.username);
                     Router.push('/');
                 }
             })

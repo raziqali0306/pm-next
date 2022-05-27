@@ -5,6 +5,7 @@ import { IoCloseSharp } from 'react-icons/io5'
 import { GrMenu } from 'react-icons/gr'
 import { CgProfile } from 'react-icons/cg'
 import { FaLock } from 'react-icons/fa'
+import { AiOutlineMenu } from 'react-icons/ai';
 
 const user = {
   name: 'Tom Cook',
@@ -28,15 +29,7 @@ function classNames(...classes:any) {
 function Navbar() {
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-100">
-        <body class="h-full">
-        ```
-      */}
-      <div className="min-h-full select-none">
+      <div className="select-none fixed top-0 w-full shadow-sm">
         <Disclosure as="nav" className="bg-secondary">
           {({ open }) => (
             <>
@@ -44,7 +37,7 @@ function Navbar() {
                 <div className="flex items-center justify-between h-16">
                   <div className="flex items-center">
                     <div className="inline-flex items-center gap-2">
-                      <FaLock color="#271c19" className='w-6 h-6 mt-auto mb-1' />
+                      <FaLock color="#fff3ec" className='w-6 h-6 mt-auto mb-1' />
                       <p className='text-3xl text-secondaryHeading tracking-widest font-bold'>VAULT</p>
                     </div>
                     <div className="hidden md:block">
@@ -75,7 +68,7 @@ function Navbar() {
                         <div>
                           <Menu.Button className="max-w-xs rounded-full flex items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-offset-secondary focus:ring-primary">
                             <span className="sr-only">Open user menu</span>
-                            <CgProfile className="h-8 w-8" color="#55423d"/>
+                            <CgProfile className="h-8 w-8" color="#fff3ec"/>
                           </Menu.Button>
                         </div>
                         <Transition
@@ -114,9 +107,9 @@ function Navbar() {
                     <Disclosure.Button className="bg-secondary inline-flex items-center justify-center p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-primary">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
-                        <IoCloseSharp className="block h-6 w-6" color='#55423d' aria-hidden="true" />
+                        <IoCloseSharp className="block h-6 w-6" color='#fff3ec' aria-hidden="true" />
                       ) : (
-                        <GrMenu className="block h-6 w-6"  aria-hidden="true" />
+                        <AiOutlineMenu className="block h-6 w-6" color='#fff3ec' aria-hidden="true" />
                       )}
                     </Disclosure.Button>
                   </div>
@@ -145,7 +138,7 @@ function Navbar() {
                 <div className="pt-4 pb-3 border-t border-gray-700">
                   <div className="flex items-center px-5">
                     <div className="flex-shrink-0">
-                    <CgProfile className="h-8 w-8" color="#55423d"/>
+                    <CgProfile className="h-8 w-8" color="#fff3ec"/>
                     </div>
                     <div className="ml-3">
                       <div className="text-base font-medium leading-none text-secondaryHeading">{user.name}</div>
