@@ -53,7 +53,7 @@ function LoginModal() {
     }, [])
 
     return (
-        <div className="select-none max-w-lg mx-auto">
+        <div className="select-none">
             <div className="py-2 bg-secondary_light text-center">
                 <p className="text-2xl capitalize font-semibold tracking-wide text-secondaryHeading">Log in</p>
             </div>
