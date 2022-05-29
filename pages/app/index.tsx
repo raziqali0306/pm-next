@@ -1,7 +1,6 @@
 import Navbar from "../../components/navbar";
 import CredList from "../../components/credential/CredList";
 import { BsViewList } from 'react-icons/bs';
-import { BsFillPlusSquareFill } from 'react-icons/bs';
 import axios from "axios";
 import { CredItemType } from '../../core/entites'
 import { useEffect, useState } from "react";
