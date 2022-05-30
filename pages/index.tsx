@@ -1,25 +1,20 @@
-import { useState } from "react";
-import BaseModal from "../components/base_modal";
-import LoginModal from "../components/login_modal";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const Router = useRouter();
 
-  const [open, setOpen] = useState<boolean>(false);
+
+
+  useEffect(() => {
+    if(sessionStorage.getItem('token-details') !== null) {
+      Router.replace('/app')
+    }
+  })
 
   return (
-    <div>
-      <div 
-        className="bg-secondary text-secondaryHeading px-4 py-2 cursor-pointer w-fit mx-auto rounded-lg" 
-        onClick={() => {
-          setOpen(!open);
-        }}
-      >
-        Click!
-      </div>
-      <BaseModal open={open} setOpen={(value: boolean) => {setOpen(value)}}>
-        <LoginModal />
-      </BaseModal>
-
+    <div className="min-h-screen flex items-center justify-center -mt-10 font-semibold text-2xl">
+      In Progress..!
     </div>
   )
 }

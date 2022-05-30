@@ -35,10 +35,8 @@ function App() {
 
     return (
         <>
-            <Navbar />
-
             {/* Content-Layout */}
-            <div className="pt-16 max-h-screen min-h-screen grid grid-cols-10 grid-rows-1">
+            <div className=" max-h-screen min-h-screen grid grid-cols-10 grid-rows-1">
                 <div className="col-span-1 bg-secondary_light inline-flex py-4 px-2 justify-center">
                     <BsViewList className="bg-secondary w-8 h-8 p-1 rounded-md cursor-pointer" color='white'/>
                 </div>

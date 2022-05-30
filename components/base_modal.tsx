@@ -28,7 +28,7 @@ export default function BaseModal({
             leaveFrom="opacity-100 translate-y-0 sm:scale-100"
             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
           >
-            <div className="-mt-10 mx-auto inline-block bg-primary rounded-xl text-left overflow-hidden shadow-xl transform transition-all w-4/5 sm:w-3/5 md:w-3/6 lg:w-2/5 xl:w-2/6">
+            <div className="mx-auto inline-block bg-primary rounded-xl text-left overflow-hidden shadow-xl transform transition-all w-4/5 sm:w-3/5 md:w-3/6 lg:w-2/5 xl:w-2/6">
               {children}
             </div>
           </Transition.Child>

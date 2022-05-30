@@ -16,6 +16,6 @@
 }
 
 input[type=text], input[type=email], input[type=password]  {
-    @apply text-primary text-sm;
+    @apply text-primaryParagraph text-sm;
 }
 
