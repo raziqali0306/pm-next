@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         setLoginModal(true);
       }}
       />
-      <div className='pt-16'>
+      <div>
         <Component {...pageProps} />
       </div>
 

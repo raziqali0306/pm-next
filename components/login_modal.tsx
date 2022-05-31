@@ -136,8 +136,6 @@ function LoginContent({
 }
 
 
-
-
 function RegisterContent({
     setOpen,
     setLogin,
