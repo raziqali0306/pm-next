@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { IoCloseSharp } from 'react-icons/io5'
 import { GrMenu } from 'react-icons/gr'
@@ -14,19 +14,33 @@ const user = {
     'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 }
 const navigation = [
-  { name: 'Dashboard', href: '', current: true },
+  { name: 'Home', href: '', current: true },
 ]
-const userNavigation = [
+const loginNavigation = [
   { name: 'Your Profile', href: '#', current: true },
   { name: 'Settings', href: '#' },
   { name: 'Sign out', href: '#' },
+]
+const logoutNavigation = [
+  { name: 'Login / Register', current: true },
 ]
 
 function classNames(...classes:any) {
   return classes.filter(Boolean).join(' ')
 }
 
-function Navbar() {
+function Navbar({
+  onLogin,
+} : {
+  onLogin: () => void,
+}) {
+
+  const [token, setToken] = useState<string| null>(null);
+
+  useEffect(() => {
+    setToken(sessionStorage.getItem('token_details'));
+  }, [])
+
   return (
     <>
       <div className="select-none fixed top-0 w-full shadow-sm">
@@ -81,22 +95,43 @@ function Navbar() {
                           leaveTo="transform opacity-0 scale-95"
                         >
                           <Menu.Items className="origin-top-right bg-secondary absolute right-0 mt-2 w-48 rounded-md shadow-sm border-2 border-primary shadow-secondary py-1  ring-opacity-5 focus:outline-none">
-                            {userNavigation.map((item) => (
-                              <Menu.Item key={item.name}>
-                                {({ active }: {'active': boolean}) => (
-                                  <a
-                                    href={item.href}
-                                    className={classNames(
-                                      active ? 'bg-primary text-primaryheading' : '',
-                                      'block px-4 py-2 text-sm text-secondaryParagraph',
-                                      'font-semibold hover:text-primaryHeading hover:bg-primary rounded-md'
+                            {
+                              token === null ? 
+                                logoutNavigation.map((item) => (
+                                  <Menu.Item key={item.name}>
+                                    {({ active }: {'active': boolean}) => (
+                                      <div
+                                        onClick={onLogin}
+                                        className={classNames(
+                                          active ? 'bg-primary text-primaryheading' : '',
+                                          'block px-4 py-2 text-sm text-secondaryParagraph',
+                                          'font-semibold hover:text-primaryHeading hover:bg-primary rounded-md'
+                                        )}
+                                      >
+                                        {item.name}
+                                      </div>
                                     )}
-                                  >
-                                    {item.name}
-                                  </a>
-                                )}
-                              </Menu.Item>
-                            ))}
+                                  </Menu.Item>
+                                ))
+                              :
+                                loginNavigation.map((item) => (
+                                  <Menu.Item key={item.name}>
+                                    {({ active }: {'active': boolean}) => (
+                                      <a
+                                        href={item.href}
+                                        className={classNames(
+                                          active ? 'bg-primary text-primaryheading' : '',
+                                          'block px-4 py-2 text-sm text-secondaryParagraph',
+                                          'font-semibold hover:text-primaryHeading hover:bg-primary rounded-md'
+                                        )}
+                                      >
+                                        {item.name}
+                                      </a>
+                                    )}
+                                  </Menu.Item>
+                                ))
+                            }
+                            
                           </Menu.Items>
                         </Transition>
                       </Menu>
@@ -146,16 +181,28 @@ function Navbar() {
                     </div>
                   </div>
                   <div className="mt-3 px-2 space-y-1">
-                    {userNavigation.map((item) => (
-                      <Disclosure.Button
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block px-3 py-2 rounded-md text-base font-medium text-secondaryParagraph hover:text-primaryHeading hover:bg-primary"
-                      >
-                        {item.name}
-                      </Disclosure.Button>
-                    ))}
+                    { token === null ? 
+                      logoutNavigation.map((item) => (
+                        <div
+                          key={item.name}
+                          onClick={onLogin}
+                          className="block px-3 py-2 rounded-md text-base font-medium text-secondaryParagraph hover:text-primaryHeading hover:bg-primary"
+                        >
+                          {item.name}
+                        </div>
+                      ))
+                      
+                    :
+                      loginNavigation.map((item) => (
+                        <Disclosure.Button
+                          key={item.name}
+                          as="a"
+                          href={item.href}
+                          className="block px-3 py-2 rounded-md text-base font-medium text-secondaryParagraph hover:text-primaryHeading hover:bg-primary"
+                        >
+                          {item.name}
+                        </Disclosure.Button>
+                      ))}
                   </div>
                 </div>
               </Disclosure.Panel>

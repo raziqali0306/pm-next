@@ -1,7 +1,6 @@
 import Navbar from "../../components/navbar";
 import CredList from "../../components/credential/CredList";
 import { BsViewList } from 'react-icons/bs';
-import { BsFillPlusSquareFill } from 'react-icons/bs';
 import axios from "axios";
 import { CredItemType } from '../../core/entites'
 import { useEffect, useState } from "react";
@@ -36,10 +35,8 @@ function App() {
 
     return (
         <>
-            <Navbar />
-
             {/* Content-Layout */}
-            <div className="pt-16 max-h-screen min-h-screen grid grid-cols-10 grid-rows-1">
+            <div className="min-h-screen grid grid-cols-10 grid-rows-1 pt-16">
                 <div className="col-span-1 bg-secondary_light inline-flex py-4 px-2 justify-center">
                     <BsViewList className="bg-secondary w-8 h-8 p-1 rounded-md cursor-pointer" color='white'/>
                 </div>
