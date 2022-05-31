@@ -13,14 +13,10 @@
     scrollbar-width: none;  /* Firefox */
 }
 
-input[type=text], input[type=email], input[type=password]  {
-    @apply text-primaryParagraph text-sm;
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #ffc0ad inset;
 }
 
-
-.top-right {
-    top: 12px;
-    right: 12px;
-    transition: transform .6s ease-in-out;
-    animation: toast-in-right .7s;
+input[type=text], input[type=email], input[type=password]  {
+    @apply text-primaryParagraph text-sm;
 }

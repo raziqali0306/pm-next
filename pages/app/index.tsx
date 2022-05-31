@@ -1,12 +1,15 @@
 import { BsViewList } from 'react-icons/bs';
 import axios from "axios";
 import { CredItemType } from '../../core/entites'
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import CredItem from "../../components/credItem";
+import BaseModal from '../../components/base_modal';
+import { AiOutlineSave } from 'react-icons/ai';
 
 function App() {
 
     const [credItems, setCredItems] = useState<CredItemType[] | []>([]);
+    const [open, setOpen] = useState<boolean>(false);
     
     const fetchCredItems = async() => {
         const token:string | null = sessionStorage.getItem('token_details');
@@ -28,8 +31,40 @@ function App() {
         }
     }
     
-    const addItem = async() => {
+    const addItem = async(event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const token:string | null = sessionStorage.getItem('token_details');
+        if(token !== null) {
+            const target = event.target as typeof event.target & {
+                name: { value: string };
+                username: { value: string };
+                password: { value: string };
+                url: {value: string}
+            };
+            let data:any = {
+                name: target.name.value,
+                username: target.username.value,
+                password: target.password.value,
+            }
+            if(target.url.value && target.url.value !== '' && target.url.value !== undefined) {
+                data['url'] = target.url.value;
+            }
+            axios.post('http://localhost:3000/pm/add', data, {
+                headers: {
+                    'Authorization' : 'Bearer ' + token,
+                }
+            })
+            .then((res) => {
+                fetchCredItems();
+            })
+            .catch((err) => {
+                console.log(err)
+            })
 
+        }
+        else {
+            //do something
+        }
     }
 
 
@@ -66,7 +101,9 @@ function App() {
                 <div className="col-span-9 overflow-auto h-full">
                     <div className="w-full px-6 inline-flex justify-between items-center py-2 border-b-2 border-secondary"> 
                         <p className="text-xs text-primaryHeading font-semibold" >Items: <span className="font-bold">{credItems.length}</span></p>
-                        <div className="cursor-pointer border-2 border-secondary bg-secondary text-secondaryHeading font-semibold py-1 px-3 rounded-full text-xs hover:scale-105 trasition duration-150 hover:text-primaryHeading hover:bg-primary">
+                        <div className="cursor-pointer border-2 border-secondary bg-secondary text-secondaryHeading font-semibold py-1 px-3 rounded-full text-xs hover:scale-105 trasition duration-150 hover:text-primaryHeading hover:bg-primary"
+                            onClick={() => {setOpen(true)}}
+                        >
                             ADD
                         </div>
                     </div>
@@ -88,8 +125,62 @@ function App() {
                     </div>
                 </div>
             </div>
+
+            <BaseModal open={open} setOpen={(value) => {setOpen(value)}}>
+                <AddItemForm addItem={(event) => {addItem(event)}}/>
+            </BaseModal>
         </>
     )
 }
 
 export default App;
+
+
+function AddItemForm({
+    addItem,
+} : {
+    addItem: (event: FormEvent<HTMLFormElement>) => void,
+}) {
+    
+    const handleAddItem = (event: FormEvent<HTMLFormElement>) => {
+        addItem(event);
+    }
+
+    return (
+        <div>
+            <div className="py-2 mb-2 bg-secondary text-secondaryHeading text-center shadow-sm shadow-secondary_light tracking-wider">
+                Add Item
+            </div>
+            <div className="text-sm pt-2 pb-3 px-3">
+                <form onSubmit={(event) => {handleAddItem(event)}}>
+                    <div className="px-4 py-3 shadow-sm shadow-secondary rounded-lg mb-4">
+                        <div className="pb-1 border-b-2 border-secondary border-opacity-5">
+                            <p className="opacity-75 ">Name</p>
+                            <input type="text" name='name' className='w-full bg-primary focus:outline-none' />
+                        </div>
+                        <div className="pb-1 border-b-2 border-secondary border-opacity-5">
+                                <p className="opacity-75 pt-1">Username</p>
+                                <input type="text" name='username' className='w-full bg-primary focus:outline-none' required/>
+                        </div>
+                        <div className="pb-1 border-b-2 border-secondary border-opacity-5">
+                                <p className="opacity-75 pt-1">Password</p>
+                                <input type="password" name='password' className='w-full bg-primary focus:outline-none' required/>
+                        </div>
+                    </div>
+                    <div className="px-4 py-3 shadow-sm shadow-secondary rounded-lg mb-4">
+                        <div className="pb-1 border-b-2 border-secondary border-opacity-5">
+                            <p className="opacity-75 ">Website</p>
+                            <input type="url" name="url" className='w-full bg-primary focus:outline-none' required/>
+                        </div>
+                    </div>
+
+                    <div className='w-full inline-flex justify-end items-center pr-1'>
+                        <div className='p-1 bg-secondary border-2 border-secondary_light rounded-md shadow-inner shadow-primary/20 cursor-pointer transition hover:scale-105 duration-150'>
+                            <AiOutlineSave className='w-5 h-5' color="#ffc0ad"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+}
