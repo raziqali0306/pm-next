@@ -3,6 +3,9 @@ import { useEffect, useState } from "react";
 import { CredItemType } from "../core/entites";
 import BaseModal from "./base_modal";
 import { MdDelete } from 'react-icons/md';
+import { IoCopyOutline } from "react-icons/io5";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { BiLinkExternal } from 'react-icons/bi';
 
 function CredItem({
     item,
@@ -49,6 +52,24 @@ function ItemInfo({
     setOpen: (value: boolean) => void,
     deleteItem: (id: string) => void,
 }) {
+
+    const [password, setPassword] = useState<string>('');
+    const [showPass, setShowPass] = useState<boolean>(false);
+
+    const toggleEye = () => {
+        if(showPass === false) {
+            setPassword(item.password);
+        }
+        else {
+            setPassword('*'.repeat(item.password.length));
+        }
+        setShowPass(!showPass);
+    }
+
+    useEffect(() => {
+        setPassword('*'.repeat(item.password.length))
+    }, [])
+    
     return (
         <div>
             <div className="py-2 mb-2 bg-secondary text-secondaryHeading text-center shadow-sm shadow-secondary_light tracking-wider">
@@ -58,17 +79,41 @@ function ItemInfo({
                 <div className="px-4 py-3 shadow-sm shadow-secondary rounded-lg mb-4">
                     <p className="opacity-75 ">Name</p>
                     <p className="font-semibold text-base pb-1 border-b-2 border-secondary border-opacity-5">{item.name}</p>
-                    <p className="opacity-75 pt-1">Username</p>
-                    <p className="font-semibold text-base pb-1 border-b-2 border-secondary border-opacity-5">{item.username}</p>
-                    <p className="opacity-75 pt-1">Password</p>
-                    <p className="font-semibold text-base">{item.name}</p>
+                    <div className="flex justify-between items-center pb-1 border-b-2 border-secondary border-opacity-5">
+                        <div>
+                            <p className="opacity-75 pt-1">Username</p>
+                            <p className="font-semibold text-base">{item.username}</p>
+                        </div>
+                        <div className="pt-1">
+                            <IoCopyOutline className="cursor-pointer h-5 w-5 mr-2" onClick={() => {navigator.clipboard.writeText(item.username); alert('Username copied');}}/>
+                        </div>
+                    </div>
+                    <div className="flex justify-between items-center pb-1 border-b-2 border-secondary border-opacity-5">
+                        <div>
+                            <p className="opacity-75 pt-1">Password</p>
+                            <p className="font-semibold text-base">{password}</p>
+                        </div>
+                        <div className="inline-flex gap-2 pt-1">
+                            {showPass === false ? 
+                                <AiOutlineEye className="cursor-pointer h-5 w-5 mr-2" onClick={toggleEye}/>
+                            :
+                                <AiOutlineEyeInvisible className="cursor-pointer h-5 w-5 mr-2" onClick={toggleEye}/>
+                            }
+                            <IoCopyOutline className="cursor-pointer h-5 w-5 mr-2" onClick={() => {navigator.clipboard.writeText(item.password); alert('Password copied');}}/>
+                        </div>
+                    </div>
                 </div>
 
         {
             item.url ? 
-                <div className="px-4 py-3 shadow-sm shadow-secondary rounded-lg mb-4">
-                    <p className="opacity-75 ">Website</p>
-                    <p className="font-semibold text-base">{item.url}</p>
+                <div className="px-4 py-3 shadow-sm shadow-secondary rounded-lg mb-4 flex justify-between items-center">
+                    <div>
+                        <p className="opacity-75 ">Website</p>
+                        <p className="font-semibold text-base">{item.url}</p>
+                    </div>
+                    <div onClick={() => {window.open(item.url)}} className="cursor-pointer pt-1 mr-2">
+                        <BiLinkExternal className="w-5 h-5"/>
+                    </div>
                 </div>
             :
                 <></> 

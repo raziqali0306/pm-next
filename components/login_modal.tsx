@@ -26,7 +26,7 @@ export default function LoginModal(
                 login === true ? 
                     <LoginContent setOpen={(value) => setOpen(value)} setLogin={(value: boolean) => setLogin(value)}/>
                 :
-                    <RegisterContent setOpen={(value) => setOpen(value)} setLogin={(value: boolean) => setLogin(value)}/>
+                    <RegisterContent setLogin={(value: boolean) => setLogin(value)}/>
             }
         </BaseModal>
     );
@@ -140,10 +140,8 @@ function LoginContent({
 
 
 function RegisterContent({
-    setOpen,
     setLogin,
 }:{
-    setOpen: (value: boolean) => void,
     setLogin: (value: boolean) => void,
 }) {
 

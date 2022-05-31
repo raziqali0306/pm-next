@@ -28,10 +28,15 @@ function App() {
         }
     }
     
+    const addItem = async() => {
+
+    }
+
+
     const deleteItem = async (id: string) => {
+        let c = confirm('Confirm Delete ?');
         const token:string | null = sessionStorage.getItem('token_details');
-        if(token !== null) {
-            //                         localhost:3000/pm/delete/6295f391b52f4f2ee7cb11cd
+        if(c && token !== null) {
             await axios.delete(`http://localhost:3000/pm/delete/${id}`, {
                 headers: {
                     'Authorization' : 'Bearer ' + token,
