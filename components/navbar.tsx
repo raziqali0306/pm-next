@@ -39,7 +39,7 @@ function Navbar({
 
   useEffect(() => {
     setToken(sessionStorage.getItem('token_details'));
-  }, [])
+  }, [token])
 
   return (
     <>

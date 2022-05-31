@@ -1,5 +1,5 @@
 import axios from 'axios';
-import Router from 'next/router';
+import {useRouter} from 'next/router';
 import { FormEvent, useEffect, useState } from 'react';
 import { ImEnter } from 'react-icons/im';
 import { IoCreate } from 'react-icons/io5'
@@ -39,6 +39,9 @@ function LoginContent({
     setOpen: (value: boolean) => void,
     setLogin: (value: boolean) => void,
 }) {
+
+    
+    const Router = useRouter();
 
     const [username, setUsername] = useState<string | null>(null);
 
@@ -184,7 +187,7 @@ function RegisterContent({
                 <p className="text-2xl capitalize font-semibold tracking-wide text-secondaryHeading">Sign up</p>
             </div>
 
-            <div className="px-10 py-6 text-left text-base">
+            <div className="px-4 py-6 text-left text-base">
                 <form onSubmit={(event) => {register(event)}} className="text-secondary">
                     <label className='font-semibold tracking-wide mb-1' htmlFor="email">Email Address</label>
                     <input className="h-8 px-2 w-full rounded-md mb-2 border-2 border-secondary focus:outline-none focus:border-primary" type="text" name="email" id="email" placeholder='Eg: JohnDoe@example.com' required/>
