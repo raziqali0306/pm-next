@@ -4,7 +4,7 @@ import { CredItemType } from '../../core/entites'
 import { FormEvent, useEffect, useState } from "react";
 import CredItem from "../../components/credItem";
 import BaseModal from '../../components/base_modal';
-import { AiOutlineSave } from 'react-icons/ai';
+import { AiOutlineEye, AiOutlineEyeInvisible, AiOutlineSave } from 'react-icons/ai';
 
 function App() {
 
@@ -55,6 +55,7 @@ function App() {
                 }
             })
             .then((res) => {
+                setOpen(false);
                 fetchCredItems();
             })
             .catch((err) => {
@@ -141,9 +142,16 @@ function AddItemForm({
 } : {
     addItem: (event: FormEvent<HTMLFormElement>) => void,
 }) {
-    
+
+    const [show, setShow] = useState<boolean>(false);
+    const [pass, setPass] = useState<string>('');
+
     const handleAddItem = (event: FormEvent<HTMLFormElement>) => {
         addItem(event);
+    }
+
+    const toggleEye = () => {
+        setShow(!show);
     }
 
     return (
@@ -163,19 +171,27 @@ function AddItemForm({
                                 <input type="text" name='username' className='w-full bg-primary focus:outline-none' required/>
                         </div>
                         <div className="pb-1 border-b-2 border-secondary border-opacity-5">
-                                <p className="opacity-75 pt-1">Password</p>
-                                <input type="password" name='password' className='w-full bg-primary focus:outline-none' required/>
+                            <p className="opacity-75 pt-1">Password</p>
+                            <div className='inline-flex justify-between items-center w-full'>
+                                <input type={`${show ? 'value' : 'password'}`} value={pass} onChange={(val) => {setPass(val.target.value)}} name='password' className='w-full bg-primary focus:outline-none' required/>
+                                {show === false ? 
+                                    <AiOutlineEye className="cursor-pointer h-5 w-5 mr-2" onClick={toggleEye}/>
+                                    :
+                                    <AiOutlineEyeInvisible className="cursor-pointer h-5 w-5 mr-2" onClick={toggleEye}/>
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className="px-4 py-3 shadow-sm shadow-secondary rounded-lg mb-4">
                         <div className="pb-1 border-b-2 border-secondary border-opacity-5">
                             <p className="opacity-75 ">Website</p>
-                            <input type="url" name="url" className='w-full bg-primary focus:outline-none' required/>
+                            <input type="url" name="url" className='w-full bg-primary focus:outline-none' />
                         </div>
                     </div>
 
                     <div className='w-full inline-flex justify-end items-center pr-1'>
-                        <div className='p-1 bg-secondary border-2 border-secondary_light rounded-md shadow-inner shadow-primary/20 cursor-pointer transition hover:scale-105 duration-150'>
+                        <input type="submit" value="" className='fixed right-5 w-6 h-6 cursor-pointer z-50'/>
+                        <div className='p-1 bg-secondary border-2 border-secondary_light rounded-md shadow-inner shadow-primary/20 transition hover:scale-105 duration-150'>
                             <AiOutlineSave className='w-5 h-5' color="#ffc0ad"/>
                         </div>
                     </div>
