@@ -13,7 +13,7 @@ export default function Home() {
   })
 
   return (
-    <div className="min-h-screen flex items-center justify-center -mt-10 font-semibold text-2xl">
+    <div className="min-h-screen flex items-center justify-center font-semibold text-2xl">
       In Progress..!
     </div>
   )
