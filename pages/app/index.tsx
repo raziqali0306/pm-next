@@ -1,3 +1,5 @@
+import AES from 'crypto-js/aes';
+import { enc } from 'crypto-js';
 import { BsViewList } from 'react-icons/bs';
 import axios from "axios";
 import { CredItemType } from '../../core/entites'
@@ -13,6 +15,7 @@ function App() {
     
     const fetchCredItems = async() => {
         const token:string | null = sessionStorage.getItem('token_details');
+        const salt:string = process.env.AES_CRYPT_PASS_PHRASE || "";
         if(token !== null) {
             await axios.get('http://localhost:3000/pm/credentials', {
                 headers: {
@@ -20,7 +23,12 @@ function App() {
                 }
             })
             .then((res) => {
-                setCredItems(res.data);
+                console.log(res.data);
+                let items = res.data;
+                items.forEach((item:CredItemType)=> {
+                    item.password = AES.decrypt(item.password, salt).toString(enc.Utf8);
+                });
+                setCredItems(items);
             })
             .catch((err) => {
                 console.log(err);
@@ -34,6 +42,7 @@ function App() {
     const addItem = async(event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const token:string | null = sessionStorage.getItem('token_details');
+        const salt:string = process.env.AES_CRYPT_PASS_PHRASE || "";
         if(token !== null) {
             const target = event.target as typeof event.target & {
                 name: { value: string };
@@ -41,10 +50,12 @@ function App() {
                 password: { value: string };
                 url: {value: string}
             };
+            let pass = AES.encrypt(target.password.value, salt).toString();
+            console.log(pass);
             let data:any = {
                 name: target.name.value,
                 username: target.username.value,
-                password: target.password.value,
+                password: pass,
             }
             if(target.url.value && target.url.value !== '' && target.url.value !== undefined) {
                 data['url'] = target.url.value;

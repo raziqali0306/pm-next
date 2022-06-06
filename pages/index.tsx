@@ -18,20 +18,22 @@ export default function Home() {
   return (
     <div className="pt-20 select-none">
       <p className="uppercase text-6xl font-bold text-primaryHeading tracking-widest">Vault</p>
-      <p className="text-xl font-semibold mt-6 mb-8">We often tend to forget passwords as we cannot remember all the passwords for all the accounts.
-      </p>
-      <div className="flex justify-around items-center text-center mx-8">
-        <div className="w-full">
-          <SiVault className="h-2/3 w-2/3 mx-auto" />
-          <p className="font-bold">Encrypted Passwords</p>
-        </div>
-        <div className="w-full">
-          <AiOutlineSafety className="h-2/3 w-2/3 mx-auto" />
-          <p className="font-bold">Safe and Secure</p>
+      <p className="text-xs font-semibold mt-1 mx-auto w-2/3 mb-4">Save all your login credentials at once place</p>
+      <p className="text-sm mt-6 mx-auto w-2/3 mb-8">We often tend to forget passwords as we cannot remember all the passwords for all the accounts.</p>
+      <div className="border-8 border-secondary_light w-1/2 mx-auto p-1 rounded-xl shadow-lg shadow-secondary_light/60">
+        <div className="text-center border-4 border-secondary rounded-lg p-6">
+          <div className="grid grid-cols-2 items-center mx-auto">
+            <SiVault className="h-full w-full mx-auto" />
+            <p className="font-bold animate-pulse">Encrypted Passwords</p>
+          </div>
+          <div className="grid grid-cols-2 gap-4 items-center mx-auto">
+            <p className="font-bold animate-pulse">Safe and Secure</p>
+            <AiOutlineSafety className="h-full w-full mx-auto" />
+          </div>
         </div>
       </div>
 
-      <p className="text-base font-semibold mt-6 mb-8">With Password Manager, we can say goodbye to memorizing passwords. This application does this job for us.</p>
+      <p className="text-sm mt-6 mx-auto w-2/3 mb-8">With Password Manager, we can say goodbye to memorizing passwords. This application does this job for us.</p>
 
       <div className="text-sm mt-8">
         <div className="mb-1 inline-flex items-center gap-1">

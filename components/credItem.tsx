@@ -27,8 +27,8 @@ function CredItem({
                     <img className="rounded-full" src={`https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=${item.url}&size=32`} alt="" />
                 </div>
                 <div className="col-span-7 text-left">
-                    <p className="text-base font-semibold">{item.name}</p>
-                    <p className="text-xs  opacity-75">{item.username}</p>
+                    <p className="text-base ">{item.name}</p>
+                    <p className="text-xs opacity-75">{item.username}</p>
                 </div>            
             </div>
             <BaseModal open={open} setOpen={(value) => {setOpen(value)}}>
@@ -78,11 +78,11 @@ function ItemInfo({
             <div className="text-sm pt-2 pb-3 px-3">
                 <div className="px-4 py-3 shadow-sm shadow-secondary rounded-lg mb-4">
                     <p className="opacity-75 ">Name</p>
-                    <p className="font-semibold text-base pb-1 border-b-2 border-secondary border-opacity-5">{item.name}</p>
+                    <p className=" text-base pb-1 border-b-2 border-secondary border-opacity-5">{item.name}</p>
                     <div className="flex justify-between items-center pb-1 border-b-2 border-secondary border-opacity-5">
                         <div>
                             <p className="opacity-75 pt-1">Username</p>
-                            <p className="font-semibold text-base">{item.username}</p>
+                            <p className=" text-base">{item.username}</p>
                         </div>
                         <div className="pt-1">
                             <IoCopyOutline className="cursor-pointer h-5 w-5 mr-2" onClick={() => {navigator.clipboard.writeText(item.username); alert('Username copied');}}/>
@@ -91,7 +91,7 @@ function ItemInfo({
                     <div className="flex justify-between items-center pb-1 border-b-2 border-secondary border-opacity-5">
                         <div>
                             <p className="opacity-75 pt-1">Password</p>
-                            <p className="font-semibold text-base">{password}</p>
+                            <p className=" text-base">{password}</p>
                         </div>
                         <div className="inline-flex gap-2 pt-1">
                             {showPass === false ? 
@@ -109,7 +109,7 @@ function ItemInfo({
                 <div className="px-4 py-3 shadow-sm shadow-secondary rounded-lg mb-4 flex justify-between items-center">
                     <div>
                         <p className="opacity-75 ">Website</p>
-                        <p className="font-semibold text-base">{item.url}</p>
+                        <p className=" text-base">{item.url}</p>
                     </div>
                     <div onClick={() => {window.open(item.url)}} className="cursor-pointer pt-1 mr-2">
                         <BiLinkExternal className="w-5 h-5"/>
