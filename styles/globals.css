@@ -2,19 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hide Scrollbars */
-
 /* Hide scrollbar for Chrome, Safari and Opera */
-body::-webkit-scrollbar {
+* ::-webkit-scrollbar {
     display: none;
 }
-  
+
 /* Hide scrollbar for IE, Edge and Firefox */
-body {
+* {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
 
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #ffc0ad inset;
+}
+
 input[type=text], input[type=email], input[type=password]  {
-    @apply text-primary text-sm;
+    @apply text-primaryParagraph text-sm;
 }
